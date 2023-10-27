@@ -1,0 +1,36 @@
+#Fundamentals of object-oriented programming
+#exercise3:
+class Car:
+    def __init__(self, regPlate, maxSpeed ):
+        self.regPlate = regPlate
+        self.maxSpeed = maxSpeed
+        self.currentSpeed = 0
+        self.odometer = 0
+
+    def accelerate(self, change):
+        self.currentSpeed += change
+        if self.currentSpeed > self.maxSpeed:
+            self.currentSpeed = self.maxSpeed
+        elif self.currentSpeed < 0:
+            self.currentSpeed = 0
+
+    def drive(self, hours):
+        distance = self.currentSpeed * hours
+        self.odometer += distance
+
+
+newCar = Car("ABC-313", 202) #maximum was 142 at the first exercises.
+print(f"Register plate {newCar.regPlate}, Max speed {newCar.maxSpeed} Km/h, "
+      f"current speed {newCar.currentSpeed} Km/h, Odometer {newCar.odometer} km")
+
+newCar.accelerate(30)
+print(f"Current speed: {newCar.currentSpeed} Km/h")
+newCar.accelerate(70)
+print(f"Current speed: {newCar.currentSpeed} Km/h")
+newCar.accelerate(50)
+print(f"Current speed: {newCar.currentSpeed} Km/h")
+'''newCar.accelerate(-200)
+print(f"Final speed: {newCar.currentSpeed} Km/h")'''
+
+newCar.drive(1.5)
+print(f"Odometer: {newCar.odometer} km")
