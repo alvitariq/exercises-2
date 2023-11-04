@@ -1,2 +1,22 @@
 #Using external interfaces
-#Exercies1
+#Exercies1:
+import requests
+
+base_url = "https://api.chucknorris.io/"
+
+endpoint = "jokes/random"
+
+full_url = base_url + endpoint
+
+response = requests.get(full_url)
+
+if response.status_code == 200:
+    joke = response.json()["value"]
+
+    print(joke)
+else:
+    print("Sorry, something went wrong. Please try again later.")
+
+#Exercies2:
+
+
