@@ -24,3 +24,28 @@ if __name__ == "__main__":
   app.run(port=5000)
 
 #exercises2:
+from flask import Flask, jsonify
+
+app = Flask(__name__)
+
+airport_database = {
+    "EFHK": {"Name": "Helsinki-Vantaa Airport", "Location": "Helsinki"},
+    "EFET": {"Name": "Enontekiö Airport", "Location": "Enontekiö"},
+    "EFHF": {"Name": "Helsinki-Malmi Airport", "Location": "Helsinki"},
+    "EFIV": {"Name": "Ivalo Airport", "Location": "Ivalo"},
+    "EFJO": {"Name": "Joensuu Airport", "Location": "Joensuu"},
+    "EFJY": {"Name": "Jyväskylä Airport", "Location": "Jyväskylän Maalaiskunta"}
+
+
+}
+
+@app.route('/airport/<icao_code>', methods=['GET'])
+def get_airport(icao_code):
+    airport = airport_database.get(icao_code)
+    if airport is not None:
+        return jsonify({"ICAO": icao_code, **airport})
+    else:
+        return jsonify({"error": "Airport not found"}), 404
+
+if __name__ == "__main__":
+    app.run(debug=True)
